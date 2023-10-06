@@ -11,7 +11,7 @@ class Blog(BaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blogs')
     title = models.CharField(max_length=255)
     description = models.TextField()
-    image = models.ImageField(upload_to=path_and_rename, null=True, blank=True)
+    image = models.ImageField(upload_to=path_and_rename)
 
     def img_preview(self):  # new
         return mark_safe('<img src = "{url}" width = "100"/>'.format(
