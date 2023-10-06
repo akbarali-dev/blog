@@ -23,6 +23,7 @@ class SocialNetworkAdmin(admin.ModelAdmin):
 class IconAdmin(admin.ModelAdmin):
     search_help_text = 'name'
     search_fields = ('name',)
+    list_per_page = 15
 
 
 @admin.register(Testimonials)
@@ -31,6 +32,7 @@ class TestimonialsAdmin(admin.ModelAdmin):
     readonly_fields = ['img_preview']
     autocomplete_fields = ("user",)
     search_fields = ('full_name',)
+    list_per_page = 15
 
 
 @admin.register(Client)
@@ -39,6 +41,7 @@ class ClientAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     autocomplete_fields = ("user",)
     readonly_fields = ['img_preview']
+    list_per_page = 15
 
 
 @admin.register(Contact)
@@ -46,9 +49,11 @@ class ContactAdmin(admin.ModelAdmin):
     list_display = ("user", "full_name", 'email', 'description')
     search_fields = ("full_name", 'email',)
     autocomplete_fields = ("user",)
+    list_per_page = 15
 
 
 @admin.register(Location)
 class LocationAdmin(admin.ModelAdmin):
     list_display = ('name', 'user')
     search_fields = ('name',)
+    list_per_page = 15

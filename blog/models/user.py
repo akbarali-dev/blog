@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from .base_model import BaseModel, PathAndRename
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.utils.html import mark_safe
 
 import re
 
@@ -27,8 +28,14 @@ class User(BaseModel):
     job_name = models.CharField(max_length=155)
     image = models.ImageField(upload_to=path_and_rename, null=True, blank=True)
     location = models.OneToOneField('about.Location', on_delete=models.CASCADE, unique=False, related_name='user')
-
     about = models.TextField()
+
+    def img_preview(self):  # new
+        return mark_safe('<img src = "{url}" width = "100"/>'.format(
+            url=self.image.url
+        ))
+
+    img_preview.short_description = 'Image'
 
     class Meta:
         db_table = 'user'

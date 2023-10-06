@@ -3,15 +3,36 @@ from django.utils.safestring import mark_safe
 
 from .models import *
 
-admin.site.register([Goals, CurrentProgress])
-
 
 @admin.register(Blog)
 class BlogAdmin(admin.ModelAdmin):
     list_display = ("user", 'title', 'description', 'img_preview')
+    search_fields = ('user', 'title')
+    autocomplete_fields = ('user',)
     readonly_fields = ['img_preview']
+    list_per_page = 15
 
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
+    list_display = ('full_name', 'phone', 'job_name', 'email', 'img_preview')
     search_fields = ('full_name', 'phone', 'job_name', 'email')
+    autocomplete_fields = ('location', 'auth_user')
+    readonly_fields = ['img_preview']
+    list_per_page = 15
+
+
+@admin.register(Goals)
+class GoalsAdmin(admin.ModelAdmin):
+    list_display = ("user", 'title', 'description',)
+    search_fields = ('user', 'title')
+    autocomplete_fields = ('user',)
+    list_per_page = 15
+
+
+@admin.register(CurrentProgress)
+class CurrentProgressAdmin(admin.ModelAdmin):
+    list_display = ("user", 'name', 'description',)
+    search_fields = ('user', 'name')
+    autocomplete_fields = ('user',)
+    list_per_page = 15
