@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from about.models import Education, Testimonials
+from about.models import Education, Testimonials, SocialNetwork, Icon
 
-admin.site.register(Education)
+admin.site.register([Education, SocialNetwork, Icon])
 
 
 @admin.register(Testimonials)
