@@ -12,3 +12,6 @@ class Education(BaseModel):
 
     class Meta:
         db_table = 'education'
+
+    def __str__(self):
+        return self.name
