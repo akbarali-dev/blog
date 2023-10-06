@@ -1,8 +1,9 @@
 from django.contrib.auth import get_user_model
-from .base_model import BaseModel
+from .base_model import BaseModel, PathAndRename
 from django.db import models
 
 DjangoUser = get_user_model()
+path_and_rename = PathAndRename("blog/userobj/images/")
 
 
 class User(BaseModel, models.Model):
@@ -11,6 +12,7 @@ class User(BaseModel, models.Model):
     phone = models.CharField(max_length=15)
     birth_date = models.DateField(blank=False, null=False)
     job_name = models.CharField(max_length=155)
+    image = models.ImageField(upload_to=path_and_rename, null=True, blank=True)
 
     class Meta:
         db_table = 'user'

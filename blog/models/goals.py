@@ -14,4 +14,4 @@ class Goals(BaseModel, models.Model):
     icon = models.TextField()
 
     class Meta:
-        db_table = 'goals'
+        db_table = 'goal'
