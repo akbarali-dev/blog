@@ -15,4 +15,4 @@ class Skills(BaseModel):
     technology = models.ForeignKey(Technology, on_delete=models.CASCADE, related_name='skills')
 
     class Meta:
-        db_table = 'skills'
+        db_table = 'skill'
