@@ -15,5 +15,7 @@ class Portfolio(BaseModel):
     description = models.TextField()
     category = models.ManyToManyField(Category)
 
+
+
     class Meta:
         db_table = 'portfolio'

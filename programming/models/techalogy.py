@@ -14,3 +14,6 @@ class Technology(BaseModel):
 
     class Meta:
         db_table = 'technalogy'
+
+    def __str__(self):
+        return self.name
