@@ -1,4 +1,4 @@
-from .user import User
+from .user import User, get_my_model_super_user
 from .blog import Blog
-from .goals import Goals
+from .goals import Goal
 from .current_progress import CurrentProgress

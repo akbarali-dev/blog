@@ -15,14 +15,14 @@ class BlogAdmin(admin.ModelAdmin):
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('full_name', 'phone', 'job_name', 'email', 'img_preview')
-    search_fields = ('full_name', 'phone', 'job_name', 'email')
+    list_display = ('full_name', 'user_name', 'phone', 'job_name', 'email', 'img_preview', )
+    search_fields = ('full_name', 'phone', 'job_name', 'email', 'user_name')
     autocomplete_fields = ('location', 'auth_user')
     readonly_fields = ['img_preview']
     list_per_page = 15
 
 
-@admin.register(Goals)
+@admin.register(Goal)
 class GoalsAdmin(admin.ModelAdmin):
     list_display = ("user", 'title', 'description',)
     search_fields = ('user', 'title')

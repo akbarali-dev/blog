@@ -12,3 +12,6 @@ class SocialNetwork(BaseModel):
 
     class Meta:
         db_table = 'social_network'
+
+    def __str__(self):
+        return self.name

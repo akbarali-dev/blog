@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-
+from django.contrib.auth.models import User as SuperUser
 from .base_model import BaseModel, PathAndRename
 from django.db import models
 from django.core.exceptions import ValidationError
@@ -20,7 +20,8 @@ def check_phone(value):
 
 
 class User(BaseModel):
-    auth_user = models.ForeignKey(DjangoUser, models.CASCADE, null=True, blank=True)
+    auth_user = models.OneToOneField(DjangoUser, models.CASCADE, null=True, blank=True, related_name='user')
+    user_name = models.CharField(unique=True)
     full_name = models.CharField(max_length=100)
     email = models.CharField(max_length=320)
     phone = models.CharField(max_length=15, validators=[check_phone])
@@ -42,3 +43,13 @@ class User(BaseModel):
 
     def __str__(self):
         return self.full_name
+
+
+def get_my_model_super_user():
+    username = 'akbarali'
+    if not SuperUser.objects.filter(username=username).exists():
+        return None
+    super_user = SuperUser.objects.get(username=username)
+    if not super_user.user:
+        return None
+    return super_user.user

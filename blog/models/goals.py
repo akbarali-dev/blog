@@ -7,7 +7,7 @@ from . import User
 DjangoUser = get_user_model()
 
 
-class Goals(BaseModel, models.Model):
+class Goal(BaseModel, models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='goals')
     title = models.CharField(max_length=125)
     description = models.TextField()
