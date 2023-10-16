@@ -15,7 +15,7 @@ class BlogAdmin(admin.ModelAdmin):
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('full_name', 'user_name', 'phone', 'job_name', 'email', 'img_preview', )
+    list_display = ('full_name', 'user_name', 'phone', 'job_name', 'email', 'img_preview',)
     search_fields = ('full_name', 'phone', 'job_name', 'email', 'user_name')
     autocomplete_fields = ('location', 'auth_user')
     readonly_fields = ['img_preview']
@@ -36,3 +36,8 @@ class CurrentProgressAdmin(admin.ModelAdmin):
     search_fields = ('user', 'name')
     autocomplete_fields = ('user',)
     list_per_page = 15
+
+
+@admin.register(Visitor)
+class VisitorAdmin(admin.ModelAdmin):
+    list_display = ('ip_address', 'timestamp', 'referring_url')

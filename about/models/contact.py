@@ -8,6 +8,7 @@ class Contact(BaseModel):
     full_name = models.CharField(max_length=100)
     email = models.EmailField()
     description = models.TextField()
+    ip_address = models.GenericIPAddressField()
 
     class Meta:
         db_table = 'contact'

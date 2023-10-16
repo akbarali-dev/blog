@@ -34,11 +34,7 @@ class Migration(migrations.Migration):
             name='user',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='education', to='blog.user'),
         ),
-        migrations.AddField(
-            model_name='contact',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='contacts', to='blog.user'),
-        ),
+
         migrations.AddField(
             model_name='client',
             name='user',

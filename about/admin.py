@@ -57,3 +57,4 @@ class LocationAdmin(admin.ModelAdmin):
     list_display = ('name', 'user')
     search_fields = ('name',)
     list_per_page = 15
+

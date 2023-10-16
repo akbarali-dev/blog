@@ -9,7 +9,7 @@ from django.contrib.auth.models import User as SuperUser
 
 from about.serializers import LocationSerializer, SocialNetworkSerializer, TestimonialsSerializer, ClientsSerializer, \
     ContactSerializer
-from blog.models import User
+from blog.models import User, Visitor
 from blog.serializers import UserAboutSerializer, UserContactSerializer, CurrentProgressSerializer, GoalSerializer
 
 
@@ -47,6 +47,12 @@ def get_about_data(user: User) -> Response:
         "clients": clients_serializer.data,
         "about": user.about,
     })
+
+
+class VisitorStatistics(APIView):
+    def get(self, request):
+        visitor_count = Visitor.objects.values('ip_address').distinct().count()
+        return Response({'visitor_count': visitor_count})
 
 
 class ContactAPIView(APIView):
