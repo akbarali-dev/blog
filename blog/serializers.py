@@ -36,6 +36,6 @@ class UserContactSerializer(serializers.ModelSerializer):
         model = User
         fields = ('full_name', 'phone',
                   'birth_date', 'email',
-                  'location', 'social_network',)
+                  'location', 'image', 'job_name')
 
 # https://stackoverflow.com/questions/45275897/how-to-get-superuser-details-in-django

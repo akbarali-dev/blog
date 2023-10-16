@@ -22,13 +22,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6bormqlyn45tgjsmz#*54)gdc5=d8fqyv8mocyf7@*h$3s@+w#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["http://localhost:5000", "*"]
 CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5000",  # Add the URL of your Vue.js frontend
 ]
+# CORS_URLS_REGEX = r'^/media/.*$'
 
 # Application definition
 
