@@ -5,4 +5,5 @@ from .social_network import SocialNetwork
 from .location import Location
 from .contact import Contact
 from .clients import Client
+from .information import Information
 

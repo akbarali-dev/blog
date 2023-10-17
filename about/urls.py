@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from about.views import UserAboutViewSet, UserContactViewSet, UserAboutAPIView, SuperUserAboutAPIView, SuperUserContactView, UserContactView, ContactAPIView, VisitorStatistics
+from about.views import UserAboutViewSet, UserContactViewSet, UserAboutAPIView, SuperUserAboutAPIView, SuperUserContactView, UserContactView, ContactAPIView, InformationVisitorAPIView
 
 # router = DefaultRouter()
 # router.register('user-about', UserAboutViewSet)
@@ -13,6 +13,6 @@ urlpatterns = [
     path('user-contact/', SuperUserContactView.as_view()),
     path('user-contact/<str:pk>', UserContactView.as_view()),
     path('contact-save/', ContactAPIView.as_view()),
-    path('visitors/', VisitorStatistics.as_view()),
+    path('info/', InformationVisitorAPIView.as_view()),
 
 ]

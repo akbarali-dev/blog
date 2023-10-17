@@ -58,3 +58,8 @@ class LocationAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     list_per_page = 15
 
+
+@admin.register(Information)
+class InformationAdmin(admin.ModelAdmin):
+    list_display = ('data',)
+    search_fields = ('data',)

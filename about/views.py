@@ -7,6 +7,7 @@ from rest_framework.decorators import action
 
 from django.contrib.auth.models import User as SuperUser
 
+from about.models import Information
 from about.serializers import LocationSerializer, SocialNetworkSerializer, TestimonialsSerializer, ClientsSerializer, \
     ContactSerializer
 from blog.models import User, Visitor
@@ -49,10 +50,16 @@ def get_about_data(user: User) -> Response:
     })
 
 
-class VisitorStatistics(APIView):
+class InformationVisitorAPIView(APIView):
     def get(self, request):
+        info = Information.objects.first()
         visitor_count = Visitor.objects.values('ip_address').distinct().count()
-        return Response({'visitor_count': visitor_count})
+        if info:
+            return Response({
+                'info': info.data,
+                'visitor': visitor_count
+            })
+        return None
 
 
 class ContactAPIView(APIView):
