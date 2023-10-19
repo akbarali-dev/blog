@@ -29,15 +29,15 @@ class ExperienceSerializer(serializers.ModelSerializer):
         fields = ('name', 'start_year', 'graduation_year', 'description')
 
 
-class TechnologySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Technology
-        fields = ('name', 'discount')
-
-
 class SkillsSerializer(serializers.ModelSerializer):
-    technologies = TechnologySerializer(many=True)
-
     class Meta:
         model = Skills
         fields = ('name', 'discount',)
+
+
+class TechnologySerializer(serializers.ModelSerializer):
+    skills = SkillsSerializer(many=True)
+
+    class Meta:
+        model = Technology
+        fields = ('name', 'discount', 'skills')

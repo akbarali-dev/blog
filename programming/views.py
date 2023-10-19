@@ -19,12 +19,12 @@ def get_resume_data(user: User) -> Response:
     technology_queryset = user.technologies.all()
     education_serializer = EducationSerializer(education_queryset, many=True)
     experience_serializer = ExperienceSerializer(experience_queryset, many=True)
-    technology_serializer = SkillsSerializer(technology_queryset, many=True)
+    technology_serializer = TechnologySerializer(technology_queryset, many=True)
 
     return Response({
         "education": education_serializer.data,
         "experience": experience_serializer.data,
-        "skill": technology_serializer.data
+        "technology": technology_serializer.data
     })
 
 
