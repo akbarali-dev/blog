@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, generics
 from rest_framework.decorators import action
+import requests
 
 from django.contrib.auth.models import User as SuperUser
 
@@ -69,6 +70,12 @@ class ContactAPIView(APIView):
         data['ip_address'] = ip_address
         serializer = ContactSerializer(data=data)
         serializer.is_valid(raise_exception=True)
+        message = "Email: " + data['email']
+        message += "\nFull name: " + data['full_name']
+        message += "\nDescription: " + data['description']
+        print("keldi")
+        requests.get("https://api.telegram.org/bot5489506404:AAGYYh1kOSFe-2dWhyemzbVlE6QH-eIveZY/sendMessage?chat_id"
+                     "=1474104201&text="+message+"")
         serializer.save()
         return Response(data="Successfully saved")
 
