@@ -28,9 +28,10 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Portfolio)
 class PortfolioAdmin(admin.ModelAdmin):
-    list_display = ('user', "name", 'description', 'get_category')
+    list_display = ('user', "name", 'description', 'get_category', 'img_preview')
     search_fields = ("name", 'user',)
     autocomplete_fields = ('user',)
+    readonly_fields = ['img_preview']
     list_per_page = 15
 
     def get_category(self, obj):

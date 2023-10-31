@@ -4,17 +4,17 @@ from about.models import Education
 from programming.models import Experience, Skills, Technology, Portfolio, Category
 
 
-class PortfolioSerializer(serializers.ModelSerializer):
-    # categories = CategorySerializer(many=True)
-
-    class Meta:
-        model = Portfolio
-        fields = ('name', 'description', 'category',)
-
-
 class CategorySerializer(serializers.Serializer):
     id = serializers.UUIDField()
     name = serializers.CharField()
+
+
+class PortfolioSerializer(serializers.ModelSerializer):
+    category = CategorySerializer(many=True)
+
+    class Meta:
+        model = Portfolio
+        fields = ('id','name', 'description', 'category', 'image')
 
 
 class EducationSerializer(serializers.ModelSerializer):

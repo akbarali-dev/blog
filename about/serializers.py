@@ -6,7 +6,7 @@ from about.models import SocialNetwork, Location, Testimonials, Client, Contact,
 class ContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contact
-        fields = ('user', 'full_name', 'email', 'description')
+        fields = ('user', 'full_name', 'email', 'description', 'ip_address')
 
 
 class IconSerializer(serializers.ModelSerializer):

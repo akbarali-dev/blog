@@ -8,7 +8,7 @@ from blog.models.goals import Goal
 class BlogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blog
-        fields = ('title', 'description', 'image')
+        fields = ('title', 'description', 'image', 'created_at')
 
 
 class GoalSerializer(serializers.ModelSerializer):
@@ -34,7 +34,7 @@ class UserContactSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('full_name', 'phone',
+        fields = ('id', 'full_name', 'phone',
                   'birth_date', 'email',
                   'location', 'image', 'job_name')
 

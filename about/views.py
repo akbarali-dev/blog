@@ -65,6 +65,8 @@ class InformationVisitorAPIView(APIView):
 class ContactAPIView(APIView):
     def post(self, request):
         data = request.data
+        ip_address = request.META.get('REMOTE_ADDR')
+        data['ip_address'] = ip_address
         serializer = ContactSerializer(data=data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
