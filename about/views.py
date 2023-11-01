@@ -1,3 +1,5 @@
+import os
+
 from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.views import APIView
@@ -73,9 +75,10 @@ class ContactAPIView(APIView):
         message = "Email: " + data['email']
         message += "\nFull name: " + data['full_name']
         message += "\nDescription: " + data['description']
+        token = os.environ.get("BOT_TOKEN")
         print("keldi")
-        requests.get("https://api.telegram.org/bot5489506404:AAGYYh1kOSFe-2dWhyemzbVlE6QH-eIveZY/sendMessage?chat_id"
-                     "=1474104201&text="+message+"")
+        requests.get("https://api.telegram.org/bot" + token + "/sendMessage?chat_id"
+                                                              "=1474104201&text=" + message + "")
         serializer.save()
         return Response(data="Successfully saved")
 
