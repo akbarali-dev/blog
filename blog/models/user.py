@@ -47,7 +47,7 @@ class User(BaseModel):
 
 def get_my_model_super_user():
     username = 'akbarali'
-    if not SuperUser.objects.filter(username=username).exists():
+    if not SuperUser.objects.exists():
         return None
     super_user = SuperUser.objects.get(username=username)
     if not super_user.user:

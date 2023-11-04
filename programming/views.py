@@ -53,9 +53,10 @@ class PortfolioApiView(APIView):
 
 class SuperUserPortfolioAPIView(APIView):
     def get(self, request):
-        user = get_my_model_super_user()
-
-        return get_portfolio_data(user)
+        # user = get_my_model_super_user()
+        #
+        # return get_portfolio_data(user)
+        pass
 
 
 class ResumeApiView(APIView):
@@ -69,6 +70,7 @@ class ResumeApiView(APIView):
 
 class SuperUserResumeAPIView(APIView):
     def get(self, request):
-        super_user = SuperUser.objects.filter(username='akbarali').first()
-        user = User.objects.get(auth_user=super_user)
-        return get_resume_data(user)
+        # super_user = SuperUser.objects.first()
+        # user = User.objects.get(auth_user=super_user)
+        # return get_resume_data(user)
+        pass

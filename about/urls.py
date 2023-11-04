@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from about.views import UserAboutViewSet, UserContactViewSet, UserAboutAPIView, SuperUserAboutAPIView, SuperUserContactView, UserContactView, ContactAPIView, InformationVisitorAPIView
+from about.views import UserAboutAPIView, SuperUserAboutAPIView, SuperUserContactView, UserContactView, ContactAPIView, InformationVisitorAPIView
 
 # router = DefaultRouter()
 # router.register('user-about', UserAboutViewSet)

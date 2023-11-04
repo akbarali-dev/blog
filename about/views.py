@@ -94,17 +94,19 @@ class UserAboutAPIView(APIView):
 
 class SuperUserAboutAPIView(APIView):
     def get(self, request):
-        super_user = SuperUser.objects.filter(username='akbarali').first()
-        user = User.objects.get(auth_user=super_user)
-        return get_about_data(user)
+        # super_user = SuperUser.objects.first()
+        # user = User.objects.get(auth_user=super_user)
+        # return get_about_data(user)
+        pass
 
 
 class SuperUserContactView(APIView):
     def get(self, request):
-        super_user = SuperUser.objects.filter(username='akbarali').first()
-        user = User.objects.get(auth_user=super_user)
-
-        return get_contact_data(user)
+        # super_user = SuperUser.objects.first()
+        # user = User.objects.get(auth_user=super_user)
+        #
+        # return get_contact_data(user)
+        pass
 
 
 class UserContactView(APIView):
@@ -115,20 +117,20 @@ class UserContactView(APIView):
         return get_contact_data(user=User.objects.get(user_name=pk))
 
 
-class UserAboutViewSet(ModelViewSet):
-    super_user = SuperUser.objects.filter(username='akbarali').first()
-    # print(super_user)
-    queryset = User.objects.filter(auth_user=super_user)
-    serializer_class = UserAboutSerializer
-
-    # @action(methods=['get'], detail=True)
-    # def get_queryset(self, **kwargs):
-    #     print('request: ', self.request.query_params)
-    # username = self.request.data
-    # queryset = User.objects.filter(user_name=username)
-    # return queryset
-
-
-class UserContactViewSet(ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserContactSerializer
+# class UserAboutViewSet(ModelViewSet):
+#     super_user = SuperUser.objects.first()
+#     # print(super_user)
+#     queryset = User.objects.filter(auth_user=super_user)
+#     serializer_class = UserAboutSerializer
+#
+#     # @action(methods=['get'], detail=True)
+#     # def get_queryset(self, **kwargs):
+#     #     print('request: ', self.request.query_params)
+#     # username = self.request.data
+#     # queryset = User.objects.filter(user_name=username)
+#     # return queryset
+#
+#
+# class UserContactViewSet(ModelViewSet):
+#     queryset = User.objects.all()
+#     serializer_class = UserContactSerializer
