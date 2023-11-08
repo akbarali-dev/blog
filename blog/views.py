@@ -8,11 +8,11 @@ from blog.serializers import BlogSerializer
 
 class SupperUserBlogAPIView(APIView):
     def get(self, request):
-        # user = get_my_model_super_user()
-        # blog_queryset = user.blogs.all()
-        # blog_serializer = BlogSerializer(blog_queryset, many=True)
-        # return Response(data=blog_serializer.data)
-        pass
+        user = get_my_model_super_user()
+        blog_queryset = user.blogs.all()
+        blog_serializer = BlogSerializer(blog_queryset, many=True)
+        return Response(data=blog_serializer.data)
+        # pass
 
 
 class BlogAPIView(APIView):

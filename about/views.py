@@ -94,19 +94,19 @@ class UserAboutAPIView(APIView):
 
 class SuperUserAboutAPIView(APIView):
     def get(self, request):
-        # super_user = SuperUser.objects.first()
-        # user = User.objects.get(auth_user=super_user)
-        # return get_about_data(user)
-        pass
+        super_user = SuperUser.objects.first()
+        user = User.objects.get(auth_user=super_user)
+        return get_about_data(user)
+        # pass
 
 
 class SuperUserContactView(APIView):
     def get(self, request):
-        # super_user = SuperUser.objects.first()
-        # user = User.objects.get(auth_user=super_user)
-        #
-        # return get_contact_data(user)
-        pass
+        super_user = SuperUser.objects.first()
+        user = User.objects.get(auth_user=super_user)
+
+        return get_contact_data(user)
+        # pass
 
 
 class UserContactView(APIView):
