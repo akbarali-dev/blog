@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Visitor(models.Model):
-    ip_address = models.GenericIPAddressField()
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     referring_url = models.URLField(null=True, blank=True)
 
