@@ -1,13 +1,16 @@
 from django.shortcuts import render
 from rest_framework import status
 from rest_framework.views import APIView
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from blog.models import User, get_my_model_super_user
 from blog.serializers import BlogSerializer
 
 
 class SupperUserBlogAPIView(APIView):
+    permission_classes = [AllowAny]
     def get(self, request):
+
         user = get_my_model_super_user()
         blog_queryset = user.blogs.all()
         blog_serializer = BlogSerializer(blog_queryset, many=True)
