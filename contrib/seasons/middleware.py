@@ -7,11 +7,12 @@ class VisitorMiddleware:
 
     def __call__(self, request):
         ip_address = self.get_client_ip(request)
-        Visitor.objects.create(ip_address=ip_address)
+        Visitor.objects.create(ip_address=ip_address, referring_url=request.path)
         response = self.get_response(request)
         return response
 
     def get_client_ip(self, request):
+        print(request.META)
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
         if x_forwarded_for:
             ip = x_forwarded_for.split(',')[0]
