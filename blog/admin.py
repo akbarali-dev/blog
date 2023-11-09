@@ -41,3 +41,4 @@ class CurrentProgressAdmin(admin.ModelAdmin):
 @admin.register(Visitor)
 class VisitorAdmin(admin.ModelAdmin):
     list_display = ('ip_address', 'timestamp', 'referring_url')
+    list_per_page = 15
