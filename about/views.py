@@ -77,13 +77,13 @@ class ContactAPIView(APIView):
         data['ip_address'] = ip_address
         serializer = ContactSerializer(data=data)
         serializer.is_valid(raise_exception=True)
-        # message = "Email: " + data['email']
-        # message += "\nFull name: " + data['full_name']
-        # message += "\nDescription: " + data['description']
-        # token = os.environ.get("BOT_TOKEN")
-        # print("keldi")
-        # requests.get("https://api.telegram.org/bot" + token + "/sendMessage?chat_id"
-        #                                                       "=1474104201&text=" + message + "")
+        message = "Email: " + data['email']
+        message += "\nFull name: " + data['full_name']
+        message += "\nDescription: " + data['description']
+        token = os.environ.get("BOT_TOKEN")
+        print("keldi")
+        requests.get("https://api.telegram.org/bot" + token + "/sendMessage?chat_id"
+                                                              "=1474104201&text=" + message + "")
         serializer.save()
         return Response(data="Successfully saved")
 
