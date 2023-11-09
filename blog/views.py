@@ -19,6 +19,7 @@ class SupperUserBlogAPIView(APIView):
 
 
 class BlogAPIView(APIView):
+    permission_classes = [AllowAny]
     def get(self, request, pk):
         if not User.objects.filter(user_name=pk).exists():
             return Response(status=status.HTTP_404_NOT_FOUND)

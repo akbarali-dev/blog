@@ -1,6 +1,7 @@
 import os
 
 from django.shortcuts import render
+from rest_framework.permissions import AllowAny
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -54,6 +55,8 @@ def get_about_data(user: User) -> Response:
 
 
 class InformationVisitorAPIView(APIView):
+    permission_classes = [AllowAny]
+
     def get(self, request):
         info = Information.objects.first()
         visitor_count = Visitor.objects.values('ip_address').distinct().count()
@@ -66,6 +69,8 @@ class InformationVisitorAPIView(APIView):
 
 
 class ContactAPIView(APIView):
+    permission_classes = [AllowAny]
+
     def post(self, request):
         data = request.data
         ip_address = request.META.get('REMOTE_ADDR')
@@ -84,6 +89,8 @@ class ContactAPIView(APIView):
 
 
 class UserAboutAPIView(APIView):
+    permission_classes = [AllowAny]
+
     def get(self, request, pk):
         if not User.objects.filter(user_name=pk).exists():
             return Response(status=status.HTTP_404_NOT_FOUND)
@@ -93,6 +100,8 @@ class UserAboutAPIView(APIView):
 
 
 class SuperUserAboutAPIView(APIView):
+    permission_classes = [AllowAny]
+
     def get(self, request):
         super_user = SuperUser.objects.first()
         user = User.objects.get(auth_user=super_user)
@@ -101,6 +110,8 @@ class SuperUserAboutAPIView(APIView):
 
 
 class SuperUserContactView(APIView):
+    permission_classes = [AllowAny]
+
     def get(self, request):
         super_user = SuperUser.objects.first()
         user = User.objects.get(auth_user=super_user)
@@ -110,12 +121,13 @@ class SuperUserContactView(APIView):
 
 
 class UserContactView(APIView):
+    permission_classes = [AllowAny]
+
     def get(self, request, pk):
         if not User.objects.filter(user_name=pk).exists():
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         return get_contact_data(user=User.objects.get(user_name=pk))
-
 
 # class UserAboutViewSet(ModelViewSet):
 #     super_user = SuperUser.objects.first()

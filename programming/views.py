@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework import status
 from rest_framework.generics import get_object_or_404
+from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 
 from django.contrib.auth.models import User as SuperUser
@@ -43,6 +44,8 @@ def get_portfolio_data(user: User) -> Response:
 
 
 class PortfolioApiView(APIView):
+    permission_classes = [AllowAny]
+
     def get(self, request, pk):
         if not User.objects.filter(user_name=pk).exists():
             return Response(status=status.HTTP_404_NOT_FOUND)
@@ -52,6 +55,8 @@ class PortfolioApiView(APIView):
 
 
 class SuperUserPortfolioAPIView(APIView):
+    permission_classes = [AllowAny]
+
     def get(self, request):
         user = get_my_model_super_user()
 
@@ -60,6 +65,8 @@ class SuperUserPortfolioAPIView(APIView):
 
 
 class ResumeApiView(APIView):
+    permission_classes = [AllowAny]
+
     def get(self, request, pk):
         try:
             user = User.objects.get(user_name=pk)
@@ -69,6 +76,8 @@ class ResumeApiView(APIView):
 
 
 class SuperUserResumeAPIView(APIView):
+    permission_classes = [AllowAny]
+
     def get(self, request):
         super_user = SuperUser.objects.first()
         user = User.objects.get(auth_user=super_user)
