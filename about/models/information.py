@@ -6,7 +6,7 @@ class Information(models.Model):
     data = models.TextField()
 
     class Meta:
-        db_table = 'information'
+        db_table = 'informations'
 
     def __str__(self):
         return self.data
