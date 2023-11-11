@@ -18,6 +18,8 @@ class TechnologyAdmin(admin.ModelAdmin):
     autocomplete_fields = ('user',)
     list_per_page = 15
 
+#     Test
+
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
