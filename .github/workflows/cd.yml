@@ -13,6 +13,22 @@ jobs:
         run: sudo apt install python3-pip
       - name: Install requirements
         run: pip install -r requirements.txt
+
+  depoy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: back.javthon.uz
+          username: root
+          key: ${{ secrets.KEY }}
+          scripts: |
+            git pull
+            systemctl restart gunicorn.service
+
+
 #      - name: Execute tests
 #        env:
 #          DJANGO_SETTINGS_MODULE: config.settings
