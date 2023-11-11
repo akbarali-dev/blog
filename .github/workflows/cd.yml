@@ -30,7 +30,9 @@ jobs:
           scripts: |
             cd blog
             git pull
-            systemctl restart gunicorn.service
+            systemctl daemon-reload
+            systemctl restart gunicorn.socket gunicorn.service
+            systemctl restart nginx
 
 
 #      - name: Execute tests
