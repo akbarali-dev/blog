@@ -47,9 +47,3 @@ jobs:
             systemctl daemon-reload
             systemctl restart gunicorn.socket gunicorn.service
             systemctl restart nginx
-
-
-#      - name: Execute tests
-#        env:
-#          DJANGO_SETTINGS_MODULE: config.settings
-#        run: python3 manage.py test
