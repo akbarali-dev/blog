@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 jobs:
   test:
     services:
@@ -33,6 +36,8 @@ jobs:
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
+          branch: 'main'
+          sha: '${{ github.event.pull_request.head.sha }}'
           host: back.javthon.uz
           username: root
           key: ${{ secrets.KEY }}
