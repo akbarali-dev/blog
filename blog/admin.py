@@ -29,7 +29,7 @@ class GoalsAdmin(admin.ModelAdmin):
     autocomplete_fields = ('user',)
     list_per_page = 15
 
-# Test2
+# Test3
 
 
 @admin.register(CurrentProgress)
