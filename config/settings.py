@@ -31,7 +31,7 @@ CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5000",  # Add the URL of your Vue.js frontend
-    "http://37.110.210.14:5000"
+    "https://javthon.uz"
 ]
 # CORS_URLS_REGEX = r'^/media/.*$'
 
