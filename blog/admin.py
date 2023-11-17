@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
+from django.db import connection
 
 from .models import *
 
@@ -29,6 +30,7 @@ class GoalsAdmin(admin.ModelAdmin):
     autocomplete_fields = ('user',)
     list_per_page = 15
 
+
 # Test4
 
 
@@ -43,4 +45,6 @@ class CurrentProgressAdmin(admin.ModelAdmin):
 @admin.register(Visitor)
 class VisitorAdmin(admin.ModelAdmin):
     list_display = ('ip_address', 'timestamp', 'referring_url')
-    list_per_page = 15
+    list_filter = ('category',)
+
+    list_per_page = 20
