@@ -7,7 +7,15 @@ class VisitorMiddleware:
 
     def __call__(self, request):
         ip_address = self.get_client_ip(request)
-        Visitor.objects.create(ip_address=ip_address, referring_url=request.path)
+        if request.path.startswith('/admin/'):
+            Visitor.objects.create(ip_address=ip_address, referring_url=request.path, category='A')
+        elif request.path.startswith('/static/'):
+            Visitor.objects.create(ip_address=ip_address, referring_url=request.path, category='S')
+        elif request.path.startswith('/media/'):
+            Visitor.objects.create(ip_address=ip_address, referring_url=request.path, category='M')
+
+        else:
+            Visitor.objects.create(ip_address=ip_address, referring_url=request.path, category='W')
         response = self.get_response(request)
         return response
 
@@ -18,7 +26,6 @@ class VisitorMiddleware:
         else:
             ip = request.META.get('REMOTE_ADDR')
         return ip
-
 
     # def __call__(self, request):
     #     ip_address = request.META.get('REMOTE_ADDR')
