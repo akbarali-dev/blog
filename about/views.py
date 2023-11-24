@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from rest_framework import status, generics
 from rest_framework.decorators import action
 import requests
+from urllib.parse import quote
 
 from django.contrib.auth.models import User as SuperUser
 
@@ -72,6 +73,7 @@ class ContactAPIView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
+        print("keldi")
         data = request.data
         ip_address = request.META.get('REMOTE_ADDR')
         data['ip_address'] = ip_address
@@ -83,8 +85,9 @@ class ContactAPIView(APIView):
         message += "\nFull name: " + data['full_name']
         message += "\nDescription: " + data['description']
         token = os.environ.get("BOT_TOKEN")
+        encoded_message = quote(message)
         requests.get("https://api.telegram.org/bot" + token + "/sendMessage?chat_id"
-                                                              "=1474104201&text=" + message + "")
+                                                              "=1474104201&text=" + encoded_message + "")
         serializer.save()
         return Response(data="Successfully saved")
 

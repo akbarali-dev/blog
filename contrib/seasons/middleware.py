@@ -2,6 +2,7 @@ import os
 
 from blog.models import Visitor
 import requests
+from urllib.parse import quote
 
 
 class VisitorMiddleware:
@@ -16,14 +17,14 @@ class VisitorMiddleware:
             print("Res:  ", response)
             message = "#new_user\n"
             message += "IP address: " + ip_address
-            message += "\nCity: " + response.get("city")
-            message += "\nRegion: " + response.get("region")
-            message += "\nCountry: " + response.get("country_name")
+            message += "\nCity: " + str(response.get("city"))
+            message += "\nRegion: " + str(response.get("region"))
+            message += "\nCountry: " + str(response.get("country_name"))
 
             token = os.environ.get("BOT_TOKEN")
-
+            encoded_message = quote(message)
             requests.get("https://api.telegram.org/bot" + token + "/sendMessage?chat_id"
-                                                                  "=1474104201&text=" + message + "")
+                                                                  "=1474104201&text=" + encoded_message + "")
 
         if request.path.startswith('/admin/'):
             Visitor.objects.create(ip_address=ip_address, referring_url=request.path, category='A')
