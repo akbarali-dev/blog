@@ -73,7 +73,6 @@ class ContactAPIView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
-        print("keldi")
         data = request.data
         ip_address = request.META.get('REMOTE_ADDR')
         data['ip_address'] = ip_address

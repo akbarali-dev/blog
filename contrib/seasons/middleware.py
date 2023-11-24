@@ -14,7 +14,7 @@ class VisitorMiddleware:
         if not Visitor.objects.filter(ip_address=ip_address).exists():
             response = requests.get(f'https://ipapi.co/{ip_address}/json/').json()
 
-            print("Res:  ", response)
+
             message = "#new_user\n"
             message += "IP address: " + ip_address
             message += "\nCity: " + str(response.get("city"))
