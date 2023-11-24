@@ -1,4 +1,7 @@
+import os
+
 from blog.models import Visitor
+import requests
 
 
 class VisitorMiddleware:
@@ -7,6 +10,21 @@ class VisitorMiddleware:
 
     def __call__(self, request):
         ip_address = self.get_client_ip(request)
+        if not Visitor.objects.filter(ip_address=ip_address).exists():
+            response = requests.get(f'https://ipapi.co/{ip_address}/json/').json()
+
+            print("Res:  ", response)
+            message = "#new_user\n"
+            message += "IP address: " + ip_address
+            message += "\nCity: " + response.get("city")
+            message += "\nRegion: " + response.get("region")
+            message += "\nCountry: " + response.get("country_name")
+
+            token = os.environ.get("BOT_TOKEN")
+
+            requests.get("https://api.telegram.org/bot" + token + "/sendMessage?chat_id"
+                                                                  "=1474104201&text=" + message + "")
+
         if request.path.startswith('/admin/'):
             Visitor.objects.create(ip_address=ip_address, referring_url=request.path, category='A')
         elif request.path.startswith('/static/'):
