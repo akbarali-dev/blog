@@ -11,20 +11,6 @@ class VisitorMiddleware:
 
     def __call__(self, request):
         ip_address = self.get_client_ip(request)
-        if not Visitor.objects.filter(ip_address=ip_address).exists():
-            response = requests.get(f'https://ipapi.co/{ip_address}/json/').json()
-
-
-            message = "#new_user\n"
-            message += "IP address: " + ip_address
-            message += "\nCity: " + str(response.get("city"))
-            message += "\nRegion: " + str(response.get("region"))
-            message += "\nCountry: " + str(response.get("country_name"))
-
-            token = os.environ.get("BOT_TOKEN")
-            encoded_message = quote(message)
-            requests.get("https://api.telegram.org/bot" + token + "/sendMessage?chat_id"
-                                                                  "=1474104201&text=" + encoded_message + "")
 
         if request.path.startswith('/admin/'):
             Visitor.objects.create(ip_address=ip_address, referring_url=request.path, category='A')
@@ -36,6 +22,20 @@ class VisitorMiddleware:
         else:
             Visitor.objects.create(ip_address=ip_address, referring_url=request.path, category='W')
         response = self.get_response(request)
+
+        if not Visitor.objects.filter(ip_address=ip_address).exists():
+            response = requests.get(f'https://ipapi.co/{ip_address}/json/').json()
+            message = "#new_user\n"
+            message += "IP address: " + ip_address
+            message += "\nCity: " + str(response.get("city"))
+            message += "\nRegion: " + str(response.get("region"))
+            message += "\nCountry: " + str(response.get("country_name"))
+
+            token = os.environ.get("BOT_TOKEN")
+            encoded_message = quote(message)
+            requests.get("https://api.telegram.org/bot" + token + "/sendMessage?chat_id"
+                                                                  "=1474104201&text=" + encoded_message + "")
+
         return response
 
     def get_client_ip(self, request):
