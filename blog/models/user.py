@@ -28,7 +28,7 @@ class User(BaseModel):
     birth_date = models.DateField(blank=False, null=False)
     job_name = models.CharField(max_length=155)
     image = models.ImageField(upload_to=path_and_rename, null=True, blank=True)
-    location = models.OneToOneField('about.Location', on_delete=models.CASCADE, unique=False, related_name='user')
+    location = models.ForeignKey('about.Location', on_delete=models.CASCADE, unique=False, related_name='user')
     about = models.TextField()
 
     def img_preview(self):  # new
