@@ -9,8 +9,8 @@ from blog.serializers import BlogSerializer
 
 class SupperUserBlogAPIView(APIView):
     permission_classes = [AllowAny]
-    def get(self, request):
 
+    def get(self, request):
         user = get_my_model_super_user()
         blog_queryset = user.blogs.all()
         blog_serializer = BlogSerializer(blog_queryset, many=True)
@@ -18,8 +18,19 @@ class SupperUserBlogAPIView(APIView):
         # pass
 
 
+class AlreadyExistUserView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, pk):
+        if not User.objects.filter(user_name=pk).exists():
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        return Response(status=status.HTTP_200_OK)
+
+
+
 class BlogAPIView(APIView):
     permission_classes = [AllowAny]
+
     def get(self, request, pk):
         if not User.objects.filter(user_name=pk).exists():
             return Response(status=status.HTTP_404_NOT_FOUND)
